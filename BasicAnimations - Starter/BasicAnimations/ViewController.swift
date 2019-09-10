@@ -168,13 +168,34 @@ class ViewController: UIViewController {
     
     @objc func squashButtonTapped() {
         
+        
+        
     }
     
     @objc func anticButtonTapped() {
         
     }
     
+    
+    //Old swift way of doing it
     @objc func coreAnimationButtonTapped() {
+        
+        //CA you have to animate each property individually
+        let colorAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.borderColor))
+        colorAnimation.fromValue = label.layer.borderColor
+        
+        let newBorderColor = randomColor()
+        
+        colorAnimation.toValue = newBorderColor
+        colorAnimation.duration = 1.5
+        
+        //Set the border color to the toValue in order for the color to stay
+        label.layer.borderColor = newBorderColor
+        
+        //Optional
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        
+        label.layer.add(colorAnimation, forKey: nil)
         
     }
     
