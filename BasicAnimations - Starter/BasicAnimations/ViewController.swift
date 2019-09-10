@@ -100,7 +100,7 @@ class ViewController: UIViewController {
     
     @objc func rotateButtonTapped() {
         
-      let originalPosition = label.center
+     // let originalPosition = label.center
         
 //        UIView.animate(withDuration: 1.5, animations: {
 //            self.label.center = CGPoint(x: 300, y: 500)
@@ -114,10 +114,10 @@ class ViewController: UIViewController {
 //
 //        }
         
-        UIView.animate(withDuration: 2, animations: {
-            self.label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4) //45 degree rotation. USE RADIANS
+        UIView.animate(withDuration: 2, animations: {               //45 degree rotation. USE RADIANS
+            self.label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4).concatenating(CGAffineTransform(scaleX: 1.2, y: 1.2))
             
-        }) { (_) in
+        }) { (_) in //Is finished
             
             
             UIView.animate(withDuration: 2, animations: {
@@ -132,10 +132,32 @@ class ViewController: UIViewController {
     
     @objc func keyButtonTapped() {
         
+        UIView.animateKeyframes(withDuration: 5, delay: 0, options: [], animations: {
+            
+            // Start at 0, and go for 25% of the duration of the animation
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
+                self.label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+            })
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25, animations: {
+                self.label.transform = .identity
+            })
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.25, animations: {
+                self.label.center = CGPoint(x: self.label.center.x, y: self.label.center.y - 100)
+            })
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.25, animations: {
+                self.label.center = self.view.center
+            })
+        }, completion: nil)
+        
     }
     
     @objc func springButtonTapped() {
     
+        
+        
     }
     
     @objc func squashButtonTapped() {
