@@ -156,7 +156,13 @@ class ViewController: UIViewController {
     
     @objc func springButtonTapped() {
     
+        self.label.transform = CGAffineTransform(translationX: 0, y: -200)
         
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: .curveEaseOut, animations: {
+            
+            self.label.transform = .identity
+            
+        }, completion: nil)
         
     }
     
