@@ -102,17 +102,31 @@ class ViewController: UIViewController {
         
       let originalPosition = label.center
         
-        UIView.animate(withDuration: 1.5, animations: {
-            self.label.center = CGPoint(x: 300, y: 500)
-            self.label.alpha = 0
+//        UIView.animate(withDuration: 1.5, animations: {
+//            self.label.center = CGPoint(x: 300, y: 500)
+//            self.label.alpha = 0
+//        }) { (_) in
+//            // Because we are perfroming this animation inside the completion closure it won't begin until the first animation is finished
+//            UIView.animate(withDuration: 1.5, animations: {
+//                self.label.center = originalPosition
+//                self.label.alpha = 1
+//            })
+//
+//        }
+        
+        UIView.animate(withDuration: 2, animations: {
+            self.label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4) //45 degree rotation. USE RADIANS
+            
         }) { (_) in
-            // Because we are perfroming this animation inside the completion closure it won't begin until the first animation is finished
-            UIView.animate(withDuration: 1.5, animations: {
-                self.label.center = originalPosition
-                self.label.alpha = 1
+            
+            
+            UIView.animate(withDuration: 2, animations: {
+                self.label.transform = .identity
             })
             
+            
         }
+        
         
     }
     
