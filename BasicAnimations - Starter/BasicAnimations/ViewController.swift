@@ -100,20 +100,15 @@ class ViewController: UIViewController {
     
     @objc func rotateButtonTapped() {
         
-        UIView.animate(withDuration: 1.5) {
-            //Anything animatable that we change in this closure will be animated
-            self.label.center = CGPoint(x: 300, y: 500)
-            self.label.alpha = 0
-            
-        }
+      let originalPosition = label.center
         
         UIView.animate(withDuration: 1.5, animations: {
             self.label.center = CGPoint(x: 300, y: 500)
             self.label.alpha = 0
         }) { (_) in
-            // Because we are perfroming this animation inside the completion closure it won't begin until the first animation is finished 
+            // Because we are perfroming this animation inside the completion closure it won't begin until the first animation is finished
             UIView.animate(withDuration: 1.5, animations: {
-                self.label.center = self.view.center
+                self.label.center = originalPosition
                 self.label.alpha = 1
             })
             
